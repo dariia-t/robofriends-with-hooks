@@ -5,22 +5,15 @@ import ErrorBoundary from "../components/ErrorBoundry.js";
 import SearchBox from '../components/SearchBox.js';
 import './App.css'
 function App() {
-/*    constructor() {
-        super()
-        this.state ={
-            robots: [],
-            searchfield: ''
-        }
-    }*/
 
     const [robots, setRobots] = useState([])
     const [searchfield, setSearchfield] = useState('')
 
-/*    componentDidMount() {
+    useEffect (()=>{
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response=>response.json())
-        .then(users =>this.setState({ robots: users}));
-    }*/
+        .then(users => { setRobots( users)});
+    },[])
     
     const onSearchChange = (event) => {
         setSearchfield(event.target.value)
@@ -29,7 +22,7 @@ function App() {
     const filteredRobots = robots.filter(robot =>{
         return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
-    
+
     if (!robots.length){
         return <h1 className="tc">Loading</h1>
     } else {
