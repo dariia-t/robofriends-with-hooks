@@ -4,8 +4,16 @@ import Scroll from "../components/Scroll.js";
 import ErrorBoundary from "../components/ErrorBoundry.js";
 import SearchBox from '../components/SearchBox.js';
 import './App.css'
-function App() {
+import {createUseStyles} from 'react-jss';
 
+const useStyles = createUseStyles({
+    myBox: {
+        textAlign: 'center',
+    },
+})
+
+function App() {
+    const classes = useStyles()
     const [robots, setRobots] = useState([])
     const [searchfield, setSearchfield] = useState('')
 
@@ -24,11 +32,11 @@ function App() {
     })
 
     if (!robots.length){
-        return <h1 className="tc">Loading</h1>
+        return <h1 className={classes.myBox}>Loading</h1>
     } else {
         return (
-            <div className="tc"> 
-                <h1 className='f1'>RoboFriends</h1>
+            <div className={classes.myBox}> 
+                <h1 style={{ fontSize: '3rem' }}>RoboFriends</h1>
                 <SearchBox searchChange={onSearchChange}/>
                 <Scroll>
                     <ErrorBoundary>
