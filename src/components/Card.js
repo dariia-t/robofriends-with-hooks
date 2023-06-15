@@ -1,5 +1,6 @@
 import React from "react";
 import {createUseStyles} from 'react-jss';
+import {Link} from 'react-router-dom';
 
 const useStyles = createUseStyles({
     myBox: {
@@ -8,7 +9,7 @@ const useStyles = createUseStyles({
         display: 'inline-block',
         borderRadius: '0.5rem',
         padding: '1rem',
-        margin: '0.5rem',
+        margin: '2rem',
         borderWidth: '0.25rem',
         boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.2)',
         transition: 'transform 0.2s, box-shadow 0.2s',
@@ -22,13 +23,15 @@ const useStyles = createUseStyles({
 const Card = ({ name, email, id}) => {
     const classes = useStyles()
     return (
-        <div className={classes.myBox}>
-            <img alt='robots' src={`https://robohash.org/${id}?200x200`} />
-            <div>
-                <h2> {name} </h2>
-                <p> {email} </p>
+        <Link to= {`/details/${id}`}>
+            <div className={classes.myBox}>
+                <img alt='robots' src={`https://robohash.org/${id}?200x200`} />
+                <div>
+                    <h2> {name} </h2>
+                    <p> {email} </p>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }
 
