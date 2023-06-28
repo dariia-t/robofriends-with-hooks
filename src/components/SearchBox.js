@@ -10,19 +10,19 @@ const useStyles = createUseStyles({
         border: '1px solid green',
         backgroundColor: 'lightblue',
         '&::placeholder': {
-            fontSize: '1.1rem', // Adjust the font size as needed
+            fontSize: '1.1rem',
         },
     },
 })
 
-const SearchBox = ({searchfield, searchChange}) => {
+const SearchBox = ({searchfield, searchChange, title}) => {
     const classes = useStyles()
     return (
         <div className={classes.searchBox}>
             <input 
                 className={classes.input}
                 type='search' 
-                placeholder='search robots'
+                placeholder={title} 
                 onChange={searchChange}
             />
         </div>
