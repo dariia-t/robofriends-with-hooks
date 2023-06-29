@@ -11,8 +11,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <RobotProvider>
-      <App />
+      <RobotProvider>
+        <App />
       </RobotProvider>
     </BrowserRouter>
   </React.StrictMode>
