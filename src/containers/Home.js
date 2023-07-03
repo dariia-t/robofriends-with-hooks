@@ -6,8 +6,6 @@ import CardList from "../components/CardList.js";
 import Scroll from "../components/Scroll.js";
 import ErrorBoundary from "../components/ErrorBoundry.js";
 import SearchBox from '../components/SearchBox.js';
-import YoutubeEmbed from "../components/YoutubeEmbed.js";
-
 
 const useStyles = createUseStyles({
     myBox: {
@@ -63,6 +61,9 @@ const Home = ({filteredRobots, onSearchChange, searchedName, nameExists}) => {
                 <Link to= {`/game`}>
                     <button className={classes.myButton}>Play a game</button>
                 </Link>
+                <Link to= {`/movies`}>
+                    <button className={classes.myButton}>RoboCinema</button>
+                </Link>
                 {/*
                 <Link to={{ 
                     pathname: `/game/${robots.options[0].id}`, 
@@ -79,7 +80,6 @@ const Home = ({filteredRobots, onSearchChange, searchedName, nameExists}) => {
                     {!nameExists && <div className={classes.error} > Can't find {searchedName}</div>}
                         <CardList robots={filteredRobots} type='default'/>
                 </ErrorBoundary>
-                <YoutubeEmbed link='https://www.youtube.com/embed/i43tkaTXtwI'/>
             </Scroll>
         </div>
     )
