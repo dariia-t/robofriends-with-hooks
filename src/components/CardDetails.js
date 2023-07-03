@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {createUseStyles} from 'react-jss';
 import {saveAs} from "file-saver";
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share';
+import LikeButton from "./LikeButton";
 
 const useStyles = createUseStyles({
     myInfo: {
@@ -119,6 +120,7 @@ const CardDetails = () => {
                   >
                     <TwitterIcon size={64} round/>
                   </TwitterShareButton>
+                  <LikeButton />
                 </div>
             </div>
         </div>
