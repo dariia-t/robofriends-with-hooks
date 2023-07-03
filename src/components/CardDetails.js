@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {createUseStyles} from 'react-jss';
 import {saveAs} from "file-saver";
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share';
 
 const useStyles = createUseStyles({
     myInfo: {
@@ -40,6 +41,13 @@ const useStyles = createUseStyles({
         boxShadow: '0 1rem 2rem rgba(0, 0, 0, 0.4)',
       },
   },
+  share: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: '200px',
+    margin: '0 auto',
+    padding: '10px 0',
+  }
 })
 
 
@@ -96,6 +104,22 @@ const CardDetails = () => {
                 <h3>{points[id-1]+ ' XP'}</h3>
                 <p className={classes.desc}>{description[id-1]}</p>
                 <button className={classes.myButton} onClick={handleClick}>Download Robot Image</button>
+                <div className={classes.share}>
+                  <FacebookShareButton
+                      url={`https://robohash.org/${id}?200x200`}
+                      quote={'Robot Image!'}
+                      hashtag="#robofriends"
+                  >
+                    <FacebookIcon size={64} round />
+                  </FacebookShareButton>
+                  <TwitterShareButton
+                    url={`https://robohash.org/${id}?200x200`}
+                    quote={'Robot Image!'}
+                    hashtag="#robofriends"
+                  >
+                    <TwitterIcon size={64} round/>
+                  </TwitterShareButton>
+                </div>
             </div>
         </div>
     </div>

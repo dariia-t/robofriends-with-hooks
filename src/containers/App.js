@@ -90,6 +90,7 @@ function App() {
                         <Route path="/options/:id" element={<AddOption initial={robots.defaultArray} options={robots.options} updateOptions={updateOptions} updateDefaultArray={updateDefaultArray} />} />
                         <Route path="/add" element={<AddHome robots={robots.options}/>}/>
                         <Route path="/game" element={<Game/>}/>
+                        
                     </Routes>
                 </div>
       
