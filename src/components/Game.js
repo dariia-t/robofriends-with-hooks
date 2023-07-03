@@ -1,7 +1,179 @@
 import React, { useState } from 'react';
-import {createUseStyles} from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
+// Define the CSS styles for the components
 const useStyles = createUseStyles({
+  myButton: {
+    cursor: 'pointer',
+    margin: '6px',
+    textAlign: 'center',
+    color: '#9eebce',
+    fontSize: '1rem',
+    button: 'btn',
+    backgroundColor: '#05375f',
+    display: 'inline-block',
+    borderRadius: '0.5rem',
+    padding: '0.75rem',
+    borderWidth: '0.1rem',
+    boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.2)',
+    transition: 'transform 0.2s, box-shadow 0.2s',
+    '&:hover': {
+      transform: 'scale(1.05)',
+      boxShadow: '0 1rem 2rem rgba(0, 0, 0, 0.4)',
+    },
+  },
+  game: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    fontFamily: 'Arial, sans-serif',
+  },
+  gameBoard: {
+    marginBottom: '20px',
+  },
+  status: {
+    color: '#9eebce',
+    margin: '20px',
+    fontSize: '2rem',
+    fontWeight: 'bold',
+  },
+  boardRow: {
+    display: 'flex',
+    marginBottom: '-1px',
+  },
+  square: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80px',
+    height: '80px',
+    border: '1px solid #ccc',
+    fontSize: '24px',
+    cursor: 'pointer',
+  },
+});
+
+function Square({ value, onSquareClick }) {
+  const classes = useStyles();
+  return (
+    <button className={classes.square} onClick={onSquareClick}>
+      {value}
+    </button>
+  );
+}
+
+function Board({ xIsNext, squares, onPlay }) {
+  const classes = useStyles();
+
+  function handleClick(i) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    const nextSquares = squares.slice();
+    if (xIsNext) {
+      nextSquares[i] = 'X';
+    } else {
+      nextSquares[i] = 'O';
+    }
+    onPlay(nextSquares);
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+  }
+
+  return (
+    <>
+      <div className={classes.status}>{status}</div>
+      <div className={classes.boardRow}>
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+      </div>
+      <div className={classes.boardRow}>
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+      </div>
+      <div className={classes.boardRow}>
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      </div>
+    </>
+  );
+}
+
+export default function Game() {
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
+
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+  }
+
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+  }
+  const classes = useStyles();
+  const moves = history.map((squares, move) => {
+    let description;
+    if (move > 0) {
+      description = 'Go to move #' + move;
+    } else {
+      description = 'Go to game start';
+    }
+    return (
+      <li style={{color: '#9eebce'}} key={move}>
+        <button className={classes.myButton} onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+
+
+
+  return (
+    <div className={classes.game}>
+      <div className={classes.gameBoard}>
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>{moves}</ol>
+      </div>
+    </div>
+  );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+
+/*const useStyles = createUseStyles({
     myButton: {
         cursor: 'pointer',
         margin: '10px auto',
@@ -105,11 +277,10 @@ const Game = () => {
         )}
         <p className={classes.randomNum}> {win}</p>
            {/* <h2 className={classes.title}>{data[0].title}</h2>
-            <p className={classes.description}>{data[0].description}</p>*/}
+            <p className={classes.description}>{data[0].description}</p>*/   /*}
           </div>
    
       </div>
   )
-};
+};*/
 
-export default Game;
