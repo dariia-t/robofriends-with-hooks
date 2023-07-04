@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import { Route, Routes} from "react-router-dom";
 
 import './App.css';
@@ -44,8 +44,8 @@ function App() {
     const [nameExists, setNameExists] = useState(true);
     const [searchedName, setSearchedName] = useState('');
     const { robots, updateDefaultArray, updateOptions } = useContext(RobotContext);
-
-    useEffect (()=>{
+   
+    useMemo (()=>{
         fetch("https://jsonplaceholder.typicode.com/users")
         .then((response) => response.json())
         .then((users) => {
@@ -55,7 +55,14 @@ function App() {
           updateOptions(options);
         });
         // eslint-disable-next-line
-    },[])
+    }, [])
+
+
+    /*
+    useEffect (()=>{
+
+        
+    },[])*/
 
     const onSearchChange = (event) => {
         const searchValue = event.target.value.toLowerCase();
