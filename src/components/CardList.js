@@ -7,14 +7,8 @@ const CardList = ({robots, type}) => {
         {
             robots.map((user, i) => {
                 return (
-                    <Card 
-                        key={i} 
-                        id={user.id} 
-                        name={user.name} 
-                        email={user.email}
-                        type={type}
-                    />
-                    );
+                    <Card key={i} {...user} type={type} />
+                );
             })
         }
         </div>

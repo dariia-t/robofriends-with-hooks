@@ -10,12 +10,7 @@ const AddHome = () => {
             <h1>{title}</h1>
             <div style={{ marginRight: '10rem', marginLeft: '10rem' }}>
                 {robots.options.map((user, i) => {
-                    return <Card 
-                        key={i} 
-                        id={user.id} 
-                        name={user.name} 
-                        email={user.email}
-                    />
+                    return  <Card key={i} {...user} />
                 })}
             </div>
         </div>
