@@ -38,10 +38,9 @@ const useStyles = createUseStyles({
 
 function App() {
   const classes = useStyles()
-  //    const [robots, setRobots] = useState({defaultArray: [], options: []});
   const [searchfield, setSearchfield] = useState('') // SearchField
   const [nameExists, setNameExists] = useState(true)
-  const { robots, updateDefaultArray, updateOptions } = useContext(RobotContext)
+  const { robots, handleRobots } = useContext(RobotContext)
 
   useMemo(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -49,8 +48,8 @@ function App() {
       .then((users) => {
         const defaultArray = users.slice(0, 3)
         const options = users.slice(4, users.length)
-        updateDefaultArray(defaultArray)
-        updateOptions(options)
+        handleRobots(defaultArray, 'default')
+        handleRobots(options, 'option')
       })
     // eslint-disable-next-line
   }, [])
@@ -90,15 +89,10 @@ function App() {
           <Route
             path='/options/:id'
             element={
-              <AddOption
-                initial={robots.defaultArray}
-                options={robots.options}
-                updateOptions={updateOptions}
-                updateDefaultArray={updateDefaultArray}
-              />
+              <AddOption/>
             }
           />
-          <Route path='/add' element={<AddHome robots={robots.options} />} />
+          <Route path='/add' element={<AddHome />} />
           <Route path='/game' element={<Game />} />
           <Route path='/movies' element={<Cinema />} />
         </Routes>

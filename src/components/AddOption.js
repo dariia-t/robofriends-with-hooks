@@ -31,22 +31,22 @@ const useStyles = createUseStyles({
   },
 })
 
-const AddOption = ({ initial, options }) => {
+const AddOption = () => {
   const { id } = useParams()
-  const { handleRobots } = useContext(RobotContext)
+  const { robots, handleRobots } = useContext(RobotContext)
   const navigate = useNavigate()
   const classes = useStyles()
 
   const handleClick = () => {
-    const selectedRobot = options.find((robot) => robot.id === parseInt(id, 10))
+    const selectedRobot = robots.options.find((robot) => robot.id === parseInt(id, 10))
 
     if (!selectedRobot) {
       console.log('Selected robot not found')
       return
     }
 
-    const updatedInitial = [...initial, selectedRobot]
-    const updatedOptions = options.filter(
+    const updatedInitial = [...robots.defaultArray, selectedRobot]
+    const updatedOptions = robots.options.filter(
       (robot) => robot.id !== selectedRobot.id
     )
 

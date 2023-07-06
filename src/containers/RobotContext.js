@@ -5,19 +5,19 @@ export const RobotContext = createContext()
 export const RobotProvider = ({ children }) => {
   const [robots, setRobots] = useState({ defaultArray: [], options: [] })
 
-  const updateDefaultArray = (updatedDefaultArray) => {
+ /*  const updateDefaultArray = (updatedDefaultArray) => {
     setRobots((prevRobots) => ({
       ...prevRobots,
       defaultArray: updatedDefaultArray,
     }))
   }
 
-  const updateOptions = (updatedOptions) => {
+ const updateOptions = (updatedOptions) => {
     setRobots((prevRobots) => ({
       ...prevRobots,
       options: updatedOptions,
     }))
-  }
+  } */
 
   const handleRobots = (item, type) => {
     setRobots((prevRobots) => ({
@@ -28,9 +28,7 @@ export const RobotProvider = ({ children }) => {
 
   return (
     <RobotContext.Provider
-      value={{ robots, updateDefaultArray, updateOptions, handleRobots }}
-    >
-      {children}
+      value={{ robots, handleRobots }}> {children}
     </RobotContext.Provider>
   )
 }

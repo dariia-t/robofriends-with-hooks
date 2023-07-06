@@ -5,9 +5,9 @@ const YoutubeEmbed = ({link}) => {
         <iframe src={link}
         width='560'
         height='315'
-        frameborder='0'
+        frameBorder='0'
         allow='autoplay; encrypted-media'
-        allowfullscreen
+        allowFullScreen
         title='video'
         />
     )
