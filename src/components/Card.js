@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
     },
 })
 
-const Card = ({ name, email, id, type}) => {
+const Card = ({ name, id, type}) => {
     const classes = useStyles();
     const points = [100, 120, 130, 140, 150, 160, 170, 180, 190, 200];
     if (type==="default"){
