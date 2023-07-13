@@ -20,8 +20,8 @@ const useStyles = createUseStyles({
         color: '#9CA3AF',
         },
         '&:focus': {
-        outline: '2px solid #6B46C1',
-        borderColor: '#6B46C1',
+        outline: '2px solid #05375f',
+        borderColor: '#05375f',
         zIndex: '10',
         },
         '&$sm': {

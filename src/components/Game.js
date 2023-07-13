@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { myButtonStyle } from '../style';
+import Button from './Button';
 
 // Define the CSS styles for the components
 const useStyles = createUseStyles({
@@ -115,7 +115,7 @@ export default function Game() {
     }
     return (
       <li style={{color: '#9eebce'}} key={move}>
-        <button className={classes.myButton} style={myButtonStyle} onClick={() => jumpTo(move)}>{description}</button>
+        <Button label={description} style={{color: '#0ccac4', backgroundColor: '#05375f'}} onClick={() => jumpTo(move)}/>
       </li>
     );
   });

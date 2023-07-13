@@ -70,8 +70,8 @@ const Card = ({ name, id, type}) => {
                     <button className={classes.closeButton} onClick={handleClick}>X</button>
                     <img alt='robots' src={`https://robohash.org/${id}?200x200`} />
                     <div className={classes.myLink}>
-                        <h2> {name} </h2>
-                        <h3> {points[id-1]+" XP"} </h3>
+                        <h3> {name} </h3>
+                        <h4> {points[id-1]+" XP"} </h4>
                     </div>
                 </div>
             </Link>
@@ -82,8 +82,8 @@ const Card = ({ name, id, type}) => {
                 <div className={classes.myBox}>
                     <img alt='robots' src={`https://robohash.org/${id}?200x200`} />
                     <div className={classes.myLink}>
-                        <h2> {name} </h2>
-                        <h3> {points[id-1]+" XP"} </h3>
+                        <h3> {name} </h3>
+                        <h4> {points[id-1]+" XP"} </h4>
                     </div>
                 </div>
             </Link>

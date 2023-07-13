@@ -14,19 +14,19 @@ const useStyles = createUseStyles({
         fontSize: '0.875rem',
         fontWeight: 'medium',
         color: 'black',
-        backgroundColor: '#6bc8e2',
+        backgroundColor: '#0ccac4',
         cursor: 'pointer',
         '&:hover': {
-        backgroundColor: '#805AD5',
+            backgroundColor: '#f4b135',
         },
         '&:focus': {
-        outline: 'none',
-        ring: '2px',
-        ringOffset: '2px',
-        ringColor: '#6B46C1',
+            outline: 'none',
+            ring: '2px',
+            ringOffset: '2px',
+            ringColor: '#6B46C1',
         },
         '&.group': {
-        position: 'relative',
+            position: 'relative',
         },
     },
 });

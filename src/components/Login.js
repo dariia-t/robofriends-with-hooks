@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { loginFields } from './formFields';
 import Input from './Input';
 import FormAction from './FormAction';
-import FormExtra from './FormExtra';
 import { useNavigate } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 
@@ -94,7 +93,6 @@ export default function Login() {
         ))}
         {!allFieldsFilled && <p className={classes.error}>Please fill out all required fields</p>}
       </div>
-      <FormExtra />
       <FormAction handleSubmit={handleSubmit} text="Login" />
     </form>
   );
