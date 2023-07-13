@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import {createUseStyles} from 'react-jss';
-import {saveAs} from "file-saver";
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share';
-import LikeButton from "./LikeButton";
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import {createUseStyles} from 'react-jss'
+import {saveAs} from "file-saver"
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share'
+import LikeButton from "./LikeButton"
+import { myButtonStyle } from "../style"
 
 const useStyles = createUseStyles({
     myInfo: {
@@ -23,32 +24,13 @@ const useStyles = createUseStyles({
       padding: '2rem',
       width: '70%',
     },
-    myButton: {
-      cursor: 'pointer',
-      margin: '10px',
-      textAlign: 'center',
-      color: '#9eebce',
-      fontSize: '1rem',
-      button: 'btn',
-      backgroundColor: '#05375f',
-      display: 'inline-block',
-      borderRadius: '0.5rem',
-      padding: '1rem',
-      borderWidth: '0.1rem',
-      boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.2)',
-      transition: 'transform 0.2s, box-shadow 0.2s',
-      '&:hover': {
-        transform: 'scale(1.05)',
-        boxShadow: '0 1rem 2rem rgba(0, 0, 0, 0.4)',
-      },
-  },
-  share: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    maxWidth: '200px',
-    margin: '0 auto',
-    padding: '10px 0',
-  }
+    share: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      maxWidth: '200px',
+      margin: '0 auto',
+      padding: '10px 0',
+    }
 })
 
 
@@ -104,7 +86,7 @@ const CardDetails = () => {
                 <h2>{robot.name}</h2>
                 <h3>{points[id-1]+ ' XP'}</h3>
                 <p className={classes.desc}>{description[id-1]}</p>
-                <button className={classes.myButton} onClick={handleClick}>Download Robot Image</button>
+                <button className={classes.myButton} style={myButtonStyle} onClick={handleClick}>Download Robot Image</button>
                 <div className={classes.share}>
                   <FacebookShareButton
                       url={`https://robohash.org/${id}?200x200`}

@@ -11,6 +11,8 @@ import AddHome from '../components/AddHome.js'
 import Home from './Home.js'
 import Game from '../components/Game.js'
 import Cinema from '../components/Cinema.js'
+import LoginPage from '../components/LoginPage'
+import SignupPage from '../components/SignupPage'
 
 // react router tutorial https://reactrouter.com/en/main/start/tutorial
 // https://www.youtube.com/watch?v=aZGzwEjZrXc
@@ -73,9 +75,9 @@ function App() {
     return (
       <div>
         <Routes>
-          <Route
-            exact
-            path='/'
+          <Route exact path="/" element={<LoginPage/>} />
+          <Route path="/signup" element={<SignupPage/>} />
+          <Route path ='/home'
             element={
               <Home
                 filteredRobots={filteredRobots}
