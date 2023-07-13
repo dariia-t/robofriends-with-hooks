@@ -1,11 +1,13 @@
 import React from "react";
 import {createUseStyles} from 'react-jss';
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CardList from "../components/CardList.js";
 import Scroll from "../components/Scroll.js";
 import ErrorBoundary from "../components/ErrorBoundry.js";
 import SearchBox from '../components/SearchBox.js';
+import { myButtonStyle } from "../style.js";
+import LoginPage from "../components/LoginPage.js";
 
 const useStyles = createUseStyles({
     myBox: {
@@ -26,64 +28,70 @@ const useStyles = createUseStyles({
         fontWeight:'bold',
         color: '#0ccac4',
     },
-    myButton: {
-        cursor: 'pointer',
-        margin: '10px',
-        textAlign: 'center',
-        color: '#9eebce',
-        fontSize: '1rem',
-        button: 'btn',
-        backgroundColor: '#05375f',
-        display: 'inline-block',
-        borderRadius: '0.5rem',
-        padding: '1rem',
-        borderWidth: '0.1rem',
-        boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.2)',
-        transition: 'transform 0.2s, box-shadow 0.2s',
-        '&:hover': {
-          transform: 'scale(1.05)',
-          boxShadow: '0 1rem 2rem rgba(0, 0, 0, 0.4)',
-        },
-    },
 })
 
 const Home = ({filteredRobots, onSearchChange, searchedName, nameExists}) => {
     const classes = useStyles();
-
-    return(
-        <div className={classes.myBox}> 
-            <h1 style={{ fontSize: '3rem' }}>RoboFriends</h1>
-            <div className={classes.myBar}>
-                <SearchBox searchChange={onSearchChange} title={'search robots'}/> 
-                <Link to= {`/add`}>
-                    <button className={classes.myButton}>Add more of us</button>
-                </Link>
-                <Link to= {`/game`}>
-                    <button className={classes.myButton}>Play a game</button>
-                </Link>
-                <Link to= {`/movies`}>
-                    <button className={classes.myButton}>RoboCinema</button>
-                </Link>
-                {/*
-                <Link to={{ 
-                    pathname: `/game/${robots.options[0].id}`, 
-                    state: {
-                        name: robots.options[0].name,
-                        email: robots.options[0].email,
-                    },
-                }}> <button className={classes.myButton}>Play a game</button>
-                </Link>
-            */}
+    const navigate = useNavigate();
+    const loggedInUserName = localStorage.getItem('loggedInUserName');
+    const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
+    
+    const logout = () =>{
+        if (loggedInUserEmail) {
+          // Remove the specific user's authentication information from local storage
+          localStorage.removeItem('loggedInUserEmail');
+          localStorage.removeItem('loggedInUserName');
+          
+          navigate('/');
+        }
+        
+    };
+    if (loggedInUserEmail){
+        return(
+            <div className={classes.myBox}> 
+                <h1 style={{ fontSize: '3rem' }}>RoboFriends</h1>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <h2 style={{ fontSize: '1.5rem' }}>Welcome, {loggedInUserName}</h2>
+                    <button className={classes.myButton} style={myButtonStyle} onClick={logout}>Logout</button>
+                </div>
+                <div className={classes.myBar}>
+                    <SearchBox searchChange={onSearchChange} title={'search robots'}/> 
+                    <Link to= {`/add`}>
+                        <button className={classes.myButton} style={myButtonStyle}>Add more of us</button>
+                    </Link>
+                    <Link to= {`/game`}>
+                        <button className={classes.myButton} style={myButtonStyle}>Play a game</button>
+                    </Link>
+                    <Link to= {`/movies`}>
+                        <button className={classes.myButton} style={myButtonStyle}>RoboCinema</button>
+                    </Link>
+                    {/*
+                    <Link to={{ 
+                        pathname: `/game/${robots.options[0].id}`, 
+                        state: {
+                            name: robots.options[0].name,
+                            email: robots.options[0].email,
+                        },
+                    }}> <button className={classes.myButton}>Play a game</button>
+                    </Link>
+                */}
+                </div>
+                <Scroll>
+                    <ErrorBoundary>
+                        {!nameExists && <div className={classes.error} > Can't find {searchedName}</div>}
+                            <CardList robots={filteredRobots} type='default'/>
+                    </ErrorBoundary>
+                </Scroll>
             </div>
-            <Scroll>
-                <ErrorBoundary>
-                    {!nameExists && <div className={classes.error} > Can't find {searchedName}</div>}
-                        <CardList robots={filteredRobots} type='default'/>
-                </ErrorBoundary>
-            </Scroll>
-        </div>
-    )
+        )
+    }
+    else{
+        return(
+            <LoginPage/>
+        )
+    }
 };
+
 
 export default Home;
 

@@ -22,10 +22,10 @@ export default function Cinema() {
             <h1>RoboCinema</h1>
             <div className={classes.container}>
                 <div className={classes.screen}>
-                        <YoutubeEmbed link='https://www.youtube.com/embed/wU9Vrzi0LEM'/>
-                        <YoutubeEmbed link='https://www.youtube.com/embed/kForca-Bdb8'/>
-                        <YoutubeEmbed link='https://www.youtube.com/embed/7GJiy1oN8Y4'/>
-                        <YoutubeEmbed link='https://www.youtube.com/embed/bu7LTiqpU18'/>
+                        <YoutubeEmbed link='https://www.youtube.com/embed/QHH3iSeDBLo'/>
+                        <YoutubeEmbed link='https://www.youtube.com/embed/iiMFRMoxxEI'/>
+                        <YoutubeEmbed link='https://www.youtube.com/embed/d8szceStqZI'/>
+                        <YoutubeEmbed link='https://www.youtube.com/embed/0hxp5HqP1RU'/>
                 </div>  
             </div>  
         </div>

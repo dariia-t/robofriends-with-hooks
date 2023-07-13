@@ -1,27 +1,9 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { myButtonStyle } from '../style';
 
 // Define the CSS styles for the components
 const useStyles = createUseStyles({
-  myButton: {
-    cursor: 'pointer',
-    margin: '6px',
-    textAlign: 'center',
-    color: '#9eebce',
-    fontSize: '1rem',
-    button: 'btn',
-    backgroundColor: '#05375f',
-    display: 'inline-block',
-    borderRadius: '0.5rem',
-    padding: '0.75rem',
-    borderWidth: '0.1rem',
-    boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.2)',
-    transition: 'transform 0.2s, box-shadow 0.2s',
-    '&:hover': {
-      transform: 'scale(1.05)',
-      boxShadow: '0 1rem 2rem rgba(0, 0, 0, 0.4)',
-    },
-  },
   game: {
     display: 'flex',
     flexDirection: 'column',
@@ -133,7 +115,7 @@ export default function Game() {
     }
     return (
       <li style={{color: '#9eebce'}} key={move}>
-        <button className={classes.myButton} onClick={() => jumpTo(move)}>{description}</button>
+        <button className={classes.myButton} style={myButtonStyle} onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
   });

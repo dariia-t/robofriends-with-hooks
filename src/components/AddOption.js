@@ -53,7 +53,7 @@ const AddOption = () => {
     handleRobots(updatedInitial, 'default')
     console.log('length def', updatedInitial.length)
     handleRobots(updatedOptions, 'option')
-    navigate('/')
+    navigate('/home')
   }
 
   return (
