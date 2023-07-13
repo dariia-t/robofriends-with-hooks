@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react'
+import { RobotContext } from '../containers/RobotContext'
 import { createUseStyles } from 'react-jss';
+import Button from './Button';
 
 const useStyles = createUseStyles({
   likeButtonContainer: {
@@ -29,21 +31,31 @@ const useStyles = createUseStyles({
   },
 });
 
-function LikeButton() {
+function LikeButton({id, type}) {
   const classes = useStyles();
-  const [likes, setLikes] = useState(0);
+  const { robots, handleRobots } = useContext(RobotContext)
+
   const handleLike = () => {
-    setLikes(likes + 1);
+    let selectedRobot = null;
+    if(type==='option'){
+      selectedRobot = robots.options.find((robot) => robot.id === parseInt(id, 10))
+    } else{
+      selectedRobot = robots.defaultArray.find((robot) => robot.id === parseInt(id, 10))
+    }
+
+    if (!selectedRobot) {
+      console.log('Selected robot not found')
+      return
+    }
+
+    const updatedInitial = [...robots.liked, selectedRobot]
+
+    handleRobots(updatedInitial, 'liked')
   };
 
   return (
     <div className={classes.likeButtonContainer}>
-      <button
-        className={`${classes.likeButton} ${likes > 0 ? 'liked' : ''}`}
-        onClick={handleLike}
-      >
-        {likes} Likes
-      </button>
+      <Button label={'Like'} style={{color: 'white', backgroundColor: '#770737'}} onClick={handleLike}/>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import Game from '../components/Game.js'
 import Cinema from '../components/Cinema.js'
 import LoginPage from '../components/LoginPage'
 import SignupPage from '../components/SignupPage'
+import LikedPage from '../components/LikedPage'
 
 // react router tutorial https://reactrouter.com/en/main/start/tutorial
 // https://www.youtube.com/watch?v=aZGzwEjZrXc
@@ -97,6 +98,7 @@ function App() {
           <Route path='/add' element={<AddHome />} />
           <Route path='/game' element={<Game />} />
           <Route path='/movies' element={<Cinema />} />
+          <Route path='/liked' element={<LikedPage />} />
         </Routes>
       </div>
     )

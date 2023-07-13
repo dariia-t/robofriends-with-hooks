@@ -4,7 +4,7 @@ import {createUseStyles} from 'react-jss'
 import {saveAs} from "file-saver"
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share'
 import LikeButton from "./LikeButton"
-import { myButtonStyle } from "../style"
+import Button from "./Button"
 
 const useStyles = createUseStyles({
     myInfo: {
@@ -34,7 +34,7 @@ const useStyles = createUseStyles({
 })
 
 
-const CardDetails = () => {
+const CardDetails = ({type}) => {
     const { id } = useParams();
     const [robot, setRobot] = useState(null);
     const classes = useStyles();
@@ -57,16 +57,6 @@ const CardDetails = () => {
 
     const points = [100, 120, 130, 140, 150, 160, 170, 180, 190, 200];
 
-  /*  const randomDescription = (length) => {
-        const char = 'AaBbCcDdEe FfGgHhIiJjKkLl MmNnOo PpQqRr SsTtUuVvWwXxYyZz ';
-        const random = Array.from(
-            {length: length},
-            () => char[Math.floor(Math.random() * char.length)]
-        );
-        const randomString = random.join("");
-        return randomString;
-    }*/
-
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
       .then(response => response.json())
@@ -83,10 +73,10 @@ const CardDetails = () => {
             <div className={classes.myInfo}>
             <img alt='robot' src={`https://robohash.org/${id}?200x200`} />
             <div>
-                <h2>{robot.name}</h2>
-                <h3>{points[id-1]+ ' XP'}</h3>
+                <h3>{robot.name}</h3>
+                <h4>{points[id-1]+ ' XP'}</h4>
                 <p className={classes.desc}>{description[id-1]}</p>
-                <button className={classes.myButton} style={myButtonStyle} onClick={handleClick}>Download Robot Image</button>
+                <Button label={'Download Robot Image'} onClick={handleClick} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
                 <div className={classes.share}>
                   <FacebookShareButton
                       url={`https://robohash.org/${id}?200x200`}
@@ -102,7 +92,7 @@ const CardDetails = () => {
                   >
                     <TwitterIcon size={64} round/>
                   </TwitterShareButton>
-                  <LikeButton />
+                  <LikeButton id={id} type={type}/>
                 </div>
             </div>
         </div>

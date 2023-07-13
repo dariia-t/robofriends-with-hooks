@@ -30,10 +30,6 @@ const useStyles = createUseStyles({
     },
     link: {
         fontWeight: 'medium',
-      //  color: '#6bc8e2',
-        '&:hover': {
-       // color: '#805AD5',
-        },
     },
 });
 

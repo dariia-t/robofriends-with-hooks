@@ -6,8 +6,9 @@ import CardList from "../components/CardList.js";
 import Scroll from "../components/Scroll.js";
 import ErrorBoundary from "../components/ErrorBoundry.js";
 import SearchBox from '../components/SearchBox.js';
-import { myButtonStyle } from "../style.js";
+//import { myButtonStyle } from "../style.js";
 import LoginPage from "../components/LoginPage.js";
+import Button from "../components/Button.js";
 
 const useStyles = createUseStyles({
     myBox: {
@@ -52,29 +53,22 @@ const Home = ({filteredRobots, onSearchChange, searchedName, nameExists}) => {
                 <h1 style={{ fontSize: '3rem' }}>RoboFriends</h1>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <h2 style={{ fontSize: '1.5rem' }}>Welcome, {loggedInUserName}</h2>
-                    <button className={classes.myButton} style={myButtonStyle} onClick={logout}>Logout</button>
+                    <Button label={'Logout'} style={{backgroundColor: '#0ccac4', color: '#05375f'}} onClick={logout}/>
                 </div>
                 <div className={classes.myBar}>
                     <SearchBox searchChange={onSearchChange} title={'search robots'}/> 
                     <Link to= {`/add`}>
-                        <button className={classes.myButton} style={myButtonStyle}>Add more of us</button>
+                        <Button label={'Add more of us'} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
                     </Link>
                     <Link to= {`/game`}>
-                        <button className={classes.myButton} style={myButtonStyle}>Play a game</button>
+                        <Button label={'Play a game'} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
                     </Link>
                     <Link to= {`/movies`}>
-                        <button className={classes.myButton} style={myButtonStyle}>RoboCinema</button>
+                        <Button label={'Robocinema'} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
                     </Link>
-                    {/*
-                    <Link to={{ 
-                        pathname: `/game/${robots.options[0].id}`, 
-                        state: {
-                            name: robots.options[0].name,
-                            email: robots.options[0].email,
-                        },
-                    }}> <button className={classes.myButton}>Play a game</button>
+                    <Link to= {`/liked`}>
+                        <Button label={'Liked'} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
                     </Link>
-                */}
                 </div>
                 <Scroll>
                     <ErrorBoundary>
