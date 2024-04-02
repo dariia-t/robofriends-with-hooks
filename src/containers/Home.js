@@ -60,9 +60,7 @@ const Home = ({filteredRobots, onSearchChange, searchedName, nameExists}) => {
                     <Link to= {`/add`}>
                         <Button label={'Add more of us'} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
                     </Link>
-                    <Link to= {`/game`}>
-                        <Button label={'Play a game'} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
-                    </Link>
+
                     <Link to= {`/movies`}>
                         <Button label={'Robocinema'} style={{color: '#0ccac4', backgroundColor: '#05375f'}}/>
                     </Link>
